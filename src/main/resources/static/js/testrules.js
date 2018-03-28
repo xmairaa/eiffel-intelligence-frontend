@@ -77,9 +77,10 @@ jQuery(document).ready(function() {
     $('.container').on('click', 'button.download_rules', function() {
         var textData = document.getElementById("rulesListID").value;
         var jsonData = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSON.parse(textData), null, 2));
-        var link = document.getElementById("downloadRulesLink");
+        var link = document.createElement('a');
         link.setAttribute("href", jsonData);
         link.setAttribute("download", "rules.json");
+        link.setAttribute("class", "hidden");
         link.click();
     });
 
