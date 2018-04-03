@@ -96,6 +96,8 @@ public class WebController {
 
         return "forgot-password";
     }
+
+    // Documentation for JMESPath
     @RequestMapping("/jmesPathRulesSetUp.html")
     public String jmesPathRulesSetUp(Model model) {
 
