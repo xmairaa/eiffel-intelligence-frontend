@@ -74,4 +74,30 @@ jQuery(document).ready(function() {
         }
     });
 
+    $('.container').on('click', 'button.download_rules', function() {
+        var textData = document.getElementById("rulesListID").value;
+        var contentType = "application/json;charset=utf-8";
+        var jsonData = JSON.stringify(JSON.parse(textData), null, 2);
+        var fileName = "rules.json"
+
+        function downloadFile(data, type, title) {
+            var link = document.createElement('a');
+            link.setAttribute("href", "data:" + type + "," + encodeURIComponent(data));
+            link.setAttribute("download", fileName);
+            link.setAttribute("class", "hidden");
+            link.click();
+        }
+
+        function downloadFileMSExplorer(data, type, title) {
+            var blob = new Blob([data], {type: type});
+            window.navigator.msSaveOrOpenBlob(blob, title);
+        }
+
+        if (window.navigator.msSaveOrOpenBlob) {
+            downloadFileMSExplorer(jsonData, contentType, fileName);
+        } else {
+            downloadFile(jsonData, contentType, fileName);
+        }
+    });
+
 });
